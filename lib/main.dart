@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
+import 'package:now_vibes/screens/home_sceen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Ensure that Flutter bindings are initialized.
+  await Firebase.initializeApp(); // Initialize Firebase.
   runApp(const MyApp());
 }
 
@@ -11,6 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return MaterialApp(
+      theme: ThemeData(
+          brightness: Brightness.dark,
+          indicatorColor: Colors.pink,
+          primarySwatch: Colors.grey),
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
+    );
   }
 }
