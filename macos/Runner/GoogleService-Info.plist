@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBwbmioA_-zmjmQXS-1ooHhWCMkDfqPNR8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>296810083850</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.nowVibes.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>now-vibes-93193</string>
+	<key>STORAGE_BUCKET</key>
+	<string>now-vibes-93193.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:296810083850:ios:3445adc6eeafe3b33e51f3</string>
+</dict>
+</plist>
