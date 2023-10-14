@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:now_vibes/screens/home_sceen.dart';
+import 'package:now_vibes/backend/authenticator.dart';
+import 'dart:developer' as devtools show log;
+
+extension Log on Object {
+  void log() => devtools.log(toString());
+}
 
 void main() async {
   WidgetsFlutterBinding
@@ -20,7 +25,24 @@ class MyApp extends StatelessWidget {
           indicatorColor: Colors.pink,
           primarySwatch: Colors.grey),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: SafeArea(
+        child: Scaffold(
+          body: Column(children: [
+            TextButton(
+                onPressed: () async {
+                  final result = await Authenticator().loginWithGoogle();
+                  result.log();
+                },
+                child: const Text('google')),
+            TextButton(
+                onPressed: () async {
+                  final result = await Authenticator().loginWithFacebook();
+                  result.log();
+                },
+                child: const Text('facebook')),
+          ]),
+        ),
+      ),
     );
   }
 }
