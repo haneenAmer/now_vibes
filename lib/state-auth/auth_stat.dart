@@ -8,19 +8,19 @@ import 'package:now_vibes/state-auth/auth_results.dart';
 class AuthState {
   final AuthResult? result;
   final bool isLoading;
-  final UserId? userid;
+  final UserId? userId;
 
   const AuthState(
-      {required this.result, required this.isLoading, required this.userid});
+      {required this.result, required this.isLoading, required this.userId});
   const AuthState.unKnown()
       : result = null,
         isLoading = false,
-        userid = null;
+        userId = null;
 
   /// copy of the clas wih diffrient value of isLoading
   /// we do this beaause if the resultre is null the isLoading will be true and loading
   AuthState copiedWithIsLoading(bool isLoading) {
-    return AuthState(result: result, isLoading: isLoading, userid: userid);
+    return AuthState(result: result, isLoading: isLoading, userId: userId);
   }
 
   @override
@@ -28,7 +28,7 @@ class AuthState {
       identical(this, other) ||
       (result == other.result &&
           isLoading == other.isLoading &&
-          userid == other.userid);
+          userId == other.userId);
 
   @override
   int get hashCode => super.hashCode;
