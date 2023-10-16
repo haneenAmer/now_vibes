@@ -5,7 +5,11 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:now_vibes/state-auth/auth_results.dart';
 import 'package:now_vibes/state-auth/constant.dart';
 
+/// it is just a functions called some functions it has no state
+
 class Authenticator {
+  const Authenticator();
+
   /// if youhave userid so you are logged in
   UserId? get userId => FirebaseAuth.instance.currentUser?.uid;
   bool get isAlreadyLoggedIn => userId != null;
@@ -23,34 +27,37 @@ class Authenticator {
   }
 
   Future<AuthResult> loginWithFacebook() async {
-    final loginResult = await FacebookAuth.instance.login();
-    final token = loginResult.accessToken?.token;
-    if (token == null) {
-      //user has aborted the logginig in process
-      return AuthResult.aborted;
-    }
-
-    final authCredentials = FacebookAuthProvider.credential(token);
     try {
-      FirebaseAuth.instance.signInWithCredential(authCredentials);
-      return AuthResult.success;
-    } on FirebaseAuthException catch (e) {
-      /// if the user try to login with google and then log out and try to login
-      /// with facebook with same email firebase will prevent that
-      final email = e.email;
-      final credential = e.credential;
-      if (e.code == Constants.accountExistsWithDifferetnCredential &&
-          email != null &&
-          credential != null) {
-        final providers =
-            await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
-        if (providers.contains(Constants.googleCom)) {
-          await loginWithGoogle();
-          FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
-        }
-        return AuthResult.success;
+      final loginResult = await FacebookAuth.instance.login();
+      final token = loginResult.accessToken?.token;
+      if (token == null) {
+        //user has aborted the logginig in process
+        return AuthResult.aborted;
       }
 
+      final authCredentials = FacebookAuthProvider.credential(token);
+      try {
+        await FirebaseAuth.instance.signInWithCredential(authCredentials);
+        return AuthResult.success;
+      } on FirebaseAuthException catch (e) {
+        /// if the user try to login with google and then log out and try to login
+        /// with facebook with same email firebase will prevent that
+        final email = e.email;
+        final credential = e.credential;
+        if (e.code == Constants.accountExistsWithDifferetnCredential &&
+            email != null &&
+            credential != null) {
+          final providers =
+              await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+          if (providers.contains(Constants.googleCom)) {
+            await loginWithGoogle();
+            FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
+          }
+          return AuthResult.success;
+        }
+      }
+      return AuthResult.failure;
+    } catch (e) {
       return AuthResult.failure;
     }
   }
