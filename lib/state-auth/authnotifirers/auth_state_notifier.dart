@@ -14,7 +14,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       state = AuthState(
           result: AuthResult.success,
           isLoading: false,
-          userid: authenticator.userId);
+          userId: authenticator.userId);
     }
   }
   // it is diefieriente from authinticator that is the state
@@ -33,7 +33,18 @@ class AuthNotifier extends StateNotifier<AuthState> {
       // store data in firebase
       await saveUserInfo(userId: userId);
     }
-    state = AuthState(result: result, isLoading: false, userid: userId);
+    state = AuthState(result: result, isLoading: false, userId: userId);
+  }
+
+  Future<void> loginWithFacebook() async {
+    state = state.copiedWithIsLoading(true);
+    final result = await authenticator.loginWithFacebook();
+    final userId = authenticator.userId;
+    if (result == AuthResult.success && userId != null) {
+      // store data in firebase
+      await saveUserInfo(userId: userId);
+    }
+    state = AuthState(result: result, isLoading: false, userId: userId);
   }
 
   Future<void> saveUserInfo({required UserId userId}) =>
