@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "296810083850",
+    "project_id": "now-vibes-93193",
+    "storage_bucket": "now-vibes-93193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296810083850:android:2c07100975bca39d3e51f3",
+        "android_client_info": {
+          "package_name": "com.example.now_vibes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296810083850-c6ngs1js3i7h18cu67ocahjgd71rfm17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF6eWRBV0PleiuPsyftGep4htv0_I7czI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296810083850-c6ngs1js3i7h18cu67ocahjgd71rfm17.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "296810083850-opfji5qeicsh3gtm080347bbas2blivi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nowVibes.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
