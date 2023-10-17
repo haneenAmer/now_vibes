@@ -5,10 +5,10 @@ import 'package:now_vibes/state-auth/auth_results.dart';
 import 'package:now_vibes/state-auth/auth_stat.dart';
 import 'package:now_vibes/state/user_info/models/backend/user_info_storage.dart';
 
-class AuthNotifier extends StateNotifier<AuthState> {
+class AuthStateNotifier extends StateNotifier<AuthState> {
   final authenticator = const Authenticator();
   final userInfoStorage = UserInfoStorage();
-  AuthNotifier() : super(const AuthState.unKnown()) {
+  AuthStateNotifier() : super(AuthState.unKnown()) {
     // if we are already login that emmited a new  state
     if (authenticator.isAlreadyLoggedIn) {
       state = AuthState(
@@ -18,14 +18,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
   // it is diefieriente from authinticator that is the state
-  Future<void> logOut() async {
+  Future logOut() async {
     state = state.copiedWithIsLoading(true);
     await authenticator.logOut();
     // this meam log out
-    state = const AuthState.unKnown();
+    state = AuthState.unKnown();
   }
 
-  Future<void> loginWithGoogle() async {
+  Future loginWithGoogle() async {
     state = state.copiedWithIsLoading(true);
     final result = await authenticator.loginWithGoogle();
     final userId = authenticator.userId;
@@ -36,7 +36,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = AuthState(result: result, isLoading: false, userId: userId);
   }
 
-  Future<void> loginWithFacebook() async {
+  Future loginWithFacebook() async {
     state = state.copiedWithIsLoading(true);
     final result = await authenticator.loginWithFacebook();
     final userId = authenticator.userId;
@@ -47,11 +47,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = AuthState(result: result, isLoading: false, userId: userId);
   }
 
-  Future<void> saveUserInfo({required UserId userId}) =>
-      userInfoStorage.SaveUserInfo(
-          userId: userId,
-          displayName: authenticator.displayName,
-          email: authenticator.email);
+  Future saveUserInfo({required UserId userId}) => userInfoStorage.SaveUserInfo(
+      userId: userId,
+      displayName: authenticator.displayName,
+      email: authenticator.email);
 }
 
 /// every state notifier must have initial state
