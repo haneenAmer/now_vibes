@@ -6,13 +6,13 @@ import 'package:now_vibes/state-auth/auth_results.dart';
 
 /// this meaning 'AuthState' properties cannot be changed once they are set.
 class AuthState {
-  final AuthResult? result;
+  AuthResult? result;
   final bool isLoading;
   final UserId? userId;
 
-  const AuthState(
+  AuthState(
       {required this.result, required this.isLoading, required this.userId});
-  const AuthState.unKnown()
+  AuthState.unKnown()
       : result = null,
         isLoading = false,
         userId = null;
