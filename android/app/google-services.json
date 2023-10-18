@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "296810083850-qstqe5b07fubn22q6bvredarm98bpphk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.now_vibes",
+            "certificate_hash": "2abe7ddb4590e76652afddaee310efb0a69c3a96"
+          }
+        },
+        {
           "client_id": "296810083850-c6ngs1js3i7h18cu67ocahjgd71rfm17.apps.googleusercontent.com",
           "client_type": 3
         }
