@@ -17,11 +17,11 @@ class AuthState {
         isLoading = false,
         userId = null;
 
-  /// copy of the clas wih diffrient value of isLoading
+  /// -copy of the clas wih diffrient value of isLoading
   /// we do this beaause if the resultre is null the isLoading will be true and loading
-  AuthState copiedWithIsLoading(bool isLoading) {
-    return AuthState(result: result, isLoading: isLoading, userId: userId);
-  }
+  /// - even resul is unknown isLoading is set to true
+  AuthState copiedWithIsLoading(bool isLoading) =>
+      AuthState(result: result, isLoading: isLoading, userId: userId);
 
   @override
   bool operator ==(covariant AuthState other) =>
@@ -31,5 +31,5 @@ class AuthState {
           userId == other.userId);
 
   @override
-  int get hashCode => super.hashCode;
+  int get hashCode => Object.hash(result, isLoading, userId);
 }
