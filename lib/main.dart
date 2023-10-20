@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Consumer(builder: (context, ref, child) {
           final isLoggedIn = ref.watch(isLoggedInProvider);
-          // اجتهاد شخصصي الاصل  : if (isLoggedIn) بس طلع ايرور
+
           if (isLoggedIn) {
             return const MainView();
           } else {
